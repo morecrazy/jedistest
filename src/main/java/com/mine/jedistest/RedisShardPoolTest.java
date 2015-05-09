@@ -57,7 +57,7 @@ public class RedisShardPoolTest {
               jds = pool.getResource();
             try {               
                 ImpressionVO impressionVO = new ImpressionVO();
-                impressionVO.setId(i+"");
+                impressionVO.setId(9991+"");
                 impressionVO.setCost(1L);
                 jds.rpush(key.getBytes(), Utils.convertObject2Byte(impressionVO));
             } catch (Exception e) {
