@@ -52,7 +52,7 @@ public class RedisShardPoolTest {
     public static void main(String[] args) {
         long s1=System.currentTimeMillis();   
         String key = "LINEITEM_BILL_MSG";
-        for(int i=0; i<500; i++){
+        for(int i=0; i<1; i++){
               ShardedJedis jds = null;//切片客户端连接
               jds = pool.getResource();
             try {               
