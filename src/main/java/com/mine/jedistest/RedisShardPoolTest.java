@@ -29,7 +29,7 @@ public class RedisShardPoolTest {
         String hostD = "10.13.88.161";
         int portD = 6382;
         
-        String hostE = "10.13.88.163";
+        String hostE = "10.13.88.161";
         int portE = 6370;
         
         List<JedisShardInfo> jdsInfoList =new ArrayList<JedisShardInfo>(2);
