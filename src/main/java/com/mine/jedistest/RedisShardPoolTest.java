@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mine.util.Utils;
+
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedis;
@@ -48,14 +50,16 @@ public class RedisShardPoolTest {
         pool =new ShardedJedisPool(config, jdsInfoList);
      }
     public static void main(String[] args) {
-        long s1=System.currentTimeMillis();        
-        Map<String, String> map=new HashMap<String, String>();
-        for(int i=0; i<10000; i++){
+        long s1=System.currentTimeMillis();   
+        String key = "LINEITEM_BILL_MSG";
+        for(int i=0; i<500; i++){
               ShardedJedis jds = null;//切片客户端连接
               jds = pool.getResource();
             try {               
-                map.put("s"+i, "s"+i);
-                jds.hmset("s3"+i, map);               
+                ImpressionVO impressionVO = new ImpressionVO();
+                impressionVO.setId(i+"");
+                impressionVO.setCost(1L);
+                jds.rpush(key.getBytes(), Utils.convertObject2Byte(impressionVO));
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
